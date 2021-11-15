@@ -34,7 +34,7 @@ while True:
 	background = cv2.bitwise_and(background, background, mask = background_mask)
 	frame = cv2.add(background, frame)
 
-	cv2.imshow('Frame', frame)
+	cv2.imshow('Video', frame)
 
 	key_input = cv2.waitKey(1) & 0xFF
 	if key_input == InputCommand.QUIT.value:
