@@ -1,9 +1,7 @@
 from enum import Enum
 
 class BackgroundFile(Enum):
-	BEACH_1 = "backgrounds/beach_1.mp4"
-	BEACH_2 = "backgrounds/beach_2.mp4"
-	FARM_1 = "backgrounds/farm_1.mp4"
+	PURE_WHITE = "backgrounds/pure_white.mp4"
 
 	def next(self):
 		members = list(self.__class__)

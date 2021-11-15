@@ -6,7 +6,7 @@ from image_analysis.face_detector import get_faces_from
 from image_analysis.background_detector import setup_background_detector, detect_background
 
 
-__selected_background: BackgroundFile = BackgroundFile.FARM_1
+__selected_background: BackgroundFile = BackgroundFile.PURE_WHITE
 __background_video = cv2.VideoCapture(__selected_background.value)
 
 __camera_video = cv2.VideoCapture(0)
@@ -19,7 +19,10 @@ setup_background_detector(__camera_video_width, __camera_video_heigth)
 
 while True:
 	_, frame = __camera_video.read()
-	_, background = __background_video.read()
+	background_video_finished, background = __background_video.read()
+	if not background_video_finished:
+		__background_video.set(cv2.CAP_PROP_POS_FRAMES, 0)
+		_, background = __background_video.read()
 
 	faces = get_faces_from(frame)
 	object_mask, background_mask = detect_background(frame, faces[0].center()) if len(faces) > 0 \
